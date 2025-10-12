@@ -15,7 +15,7 @@ on:
 jobs:
         build:
                 name: Code standards & build
-                runs-on: ubuntu-latest
+                runs-on: self-hosted
                 timeout-minutes: 3
 
                 strategy:
@@ -25,6 +25,8 @@ jobs:
                 steps:
                         - name: "☁️ Checkout repository"
                           uses: actions/checkout@v4
+                          with:
+                                  ref: ${{ github.ref }}
 
                         - name: "📦 Install pnpm"
                           uses: pnpm/action-setup@v4

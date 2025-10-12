@@ -31,9 +31,7 @@ async function loadGoogleFont(
         return res.arrayBuffer();
 }
 
-async function loadGoogleFonts(
-        text: string
-): Promise<
+async function loadGoogleFonts(text: string): Promise<
         Array<{
                 name: string;
                 data: ArrayBuffer;
