@@ -4,7 +4,7 @@ export const SITE = {
     author: "Ziad Arafat",
     profile: "https://satnaing.dev/",
     desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-    title: "AstroPaper",
+    title: "NMSU Cybersecurity Club",
     ogImage: "astropaper-og.jpg",
     lightAndDarkMode: true,
     postPerIndex: 4,
