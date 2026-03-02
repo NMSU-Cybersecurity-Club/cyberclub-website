@@ -1,0 +1,22 @@
+{
+  "name": "astro-cyberclub-nmsu",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,Z",
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "settings": { 
+        "editor.formatOnSave": true
+      },
+      "extensions": [
+        "astro-build.astro-vscode",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+
+  "runArgs": ["-p", "4321:4321"],
+  "remoteUser": "node",
+  "updateRemoteUserUID": true
+}
