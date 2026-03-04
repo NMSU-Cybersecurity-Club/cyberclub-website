@@ -6,14 +6,14 @@ slug: how-do-i-develop-my-terminal-portfolio-website-with-react
 featured: false
 draft: false
 tags:
-        - JavaScript
-        - ReactJS
-        - ContextAPI
-        - Styled-Components
-        - TypeScript
+    - JavaScript
+    - ReactJS
+    - ContextAPI
+    - Styled-Components
+    - TypeScript
 description:
-        "EXAMPLE POST: Developing a terminal-like website using ReactJS, TypeScript and Styled-Components.
-        Includes features like autocomplete, multiple themes, command hints etc."
+    "EXAMPLE POST: Developing a terminal-like website using ReactJS, TypeScript and Styled-Components.
+    Includes features like autocomplete, multiple themes, command hints etc."
 timezone: "Asia/Yangon"
 ---
 

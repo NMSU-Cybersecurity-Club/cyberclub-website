@@ -12,8 +12,8 @@ Here’s a summary of the different ways you can contribute:
 
 - [Opening a new issue](#open-a-new-issue)
 - [Submitting PRs](#feature-requests)
-     - [Solving an existing issue](#solving-an-issue)
-     - [Making changes to a blog post](#making-changes-to-a-blog-post)
+    - [Solving an existing issue](#solving-an-issue)
+    - [Making changes to a blog post](#making-changes-to-a-blog-post)
 - [Helping others by answering issues/discussions](#helping-with-github-issuesdiscussions)
 - [Reviewing existing PRs](#reviewing-existing-prs)
 - [Starting a discussion](#starting-a-discussion)

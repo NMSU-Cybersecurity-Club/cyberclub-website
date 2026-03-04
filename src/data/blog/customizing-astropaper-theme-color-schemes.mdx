@@ -6,11 +6,11 @@ title: Customizing AstroPaper theme color schemes
 featured: false
 draft: false
 tags:
-        - color-schemes
-        - docs
+    - color-schemes
+    - docs
 description:
-        How you can enable/disable light & dark mode; and customize color schemes
-        of AstroPaper theme.
+    How you can enable/disable light & dark mode; and customize color schemes
+    of AstroPaper theme.
 ---
 
 This post will explain how you can enable/disable light & dark mode for the website. Moreover, you'll learn how you can customize color schemes of the entire website.
@@ -70,11 +70,11 @@ The **primaryColorScheme** variable can hold two values\_ `"light"`, `"dark"`. Y
 - `"dark"` - use dark mode as primary color scheme.
 
 <details>
-        <summary>Why primaryColorScheme' is not inside config.ts?</summary>
-        To avoid color flickering on page reload, we have to place the
-        toggle-switch JavaScript codes as early as possible when the page loads.
-        It solves the problem of flickering, but as a trade-off, we cannot use
-        ESM imports anymore.
+    <summary>Why primaryColorScheme' is not inside config.ts?</summary>
+    To avoid color flickering on page reload, we have to place the toggle-switch
+    JavaScript codes as early as possible when the page loads. It solves the
+    problem of flickering, but as a trade-off, we cannot use ESM imports
+    anymore.
 </details>
 
 ## Customize color schemes
@@ -89,19 +89,19 @@ Both light & dark color schemes of AstroPaper theme can be customized in the `gl
 
 :root,
 html[data-theme="light"] {
-        --background: #fdfdfd;
-        --foreground: #282728;
-        --accent: #006cac;
-        --muted: #e6e6e6;
-        --border: #ece9e9;
+    --background: #fdfdfd;
+    --foreground: #282728;
+    --accent: #006cac;
+    --muted: #e6e6e6;
+    --border: #ece9e9;
 }
 
 html[data-theme="dark"] {
-        --background: #212737;
-        --foreground: #eaedf3;
-        --accent: #ff6b01;
-        --muted: #343f60bf;
-        --border: #ab4b08;
+    --background: #212737;
+    --foreground: #eaedf3;
+    --accent: #ff6b01;
+    --muted: #343f60bf;
+    --border: #ab4b08;
 }
 /* ... */
 ```
@@ -126,11 +126,11 @@ Here is an example of changing the light color scheme.
 /* ... */
 :root,
 html[data-theme="light"] {
-        --background: #f6eee1;
-        --foreground: #012c56;
-        --accent: #e14a39;
-        --muted: #efd8b0;
-        --border: #dc9891;
+    --background: #f6eee1;
+    --foreground: #012c56;
+    --accent: #e14a39;
+    --muted: #efd8b0;
+    --border: #dc9891;
 }
 /* ... */
 ```
