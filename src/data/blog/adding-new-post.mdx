@@ -7,10 +7,10 @@ slug: adding-new-posts-in-astropaper-theme
 featured: true
 draft: false
 tags:
-        - docs
+    - docs
 description:
-        Some rules & recommendations for creating or adding new posts using AstroPaperr
-        theme.
+    Some rules & recommendations for creating or adding new posts using AstroPaperr
+    theme.
 ---
 
 export const working_title = "My first MDX post";
@@ -20,16 +20,16 @@ export const working_title = "My first MDX post";
 Here are some rules/recommendations, tips & ticks for creating new posts in AstroPaper blog theme.
 
 <figure>
-        <img
-                src="https://images.pexels.com/photos/159618/still-life-school-retro-ink-159618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Free Classic wooden desk with writing materials, vintage clock, and a leather bag. Stock Photo"
-        />
-        <figcaption class="text-center">
-                Photo by{" "}
-                <a href="https://www.pexels.com/photo/brown-wooden-desk-159618/">
-                        Pixabay
-                </a>
-        </figcaption>
+    <img
+        src="https://images.pexels.com/photos/159618/still-life-school-retro-ink-159618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt="Free Classic wooden desk with writing materials, vintage clock, and a leather bag. Stock Photo"
+    />
+    <figcaption class="text-center">
+        Photo by{" "}
+        <a href="https://www.pexels.com/photo/brown-wooden-desk-159618/">
+            Pixabay
+        </a>
+    </figcaption>
 </figure>
 
 ## Table of contents
@@ -95,11 +95,11 @@ If you omit `tags` in a blog post (in other words, if no tag is specified), the 
 
 ```ts file="src/content.config.ts"
 export const blogSchema = z.object({
-        // ...
-        draft: z.boolean().optional(),
-        // [!code highlight:1]
-        tags: z.array(z.string()).default(["others"]), // replace "others" with whatever you want
-        // ...
+    // ...
+    draft: z.boolean().optional(),
+    // [!code highlight:1]
+    tags: z.array(z.string()).default(["others"]), // replace "others" with whatever you want
+    // ...
 });
 ```
 
@@ -116,9 +116,9 @@ slug: the-title-of-the-post
 featured: true
 draft: false
 tags:
-        - some
-        - example
-        - tags
+    - some
+    - example
+    - tags
 ogImage: ../../assets/images/example.png # src/assets/images/example.png
 # ogImage: "https://example.org/remote-image.png" # remote URL
 description: This is the example description of the example post.

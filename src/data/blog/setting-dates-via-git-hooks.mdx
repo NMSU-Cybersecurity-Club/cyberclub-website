@@ -6,8 +6,8 @@ title: How to use Git Hooks to set Created and Modified Dates
 featured: false
 draft: false
 tags:
-        - docs
-        - FAQ
+    - docs
+    - FAQ
 canonicalURL: https://smale.codes/posts/setting-dates-via-git-hooks/
 description: How to use Git Hooks to set your Created and Modified Dates on AstroPaper
 ---
@@ -133,16 +133,16 @@ We could use the `a` variable to switch inside the loop and either update the `m
 If your IDE supports snippets then there is the option to create a custom snippet to populate the frontmatter.[In AstroPaper v4 will come with one for VSCode by default.](https://github.com/satnaing/astro-paper/pull/206)
 
 <video
-        autoplay
-        muted="muted"
-        controls
-        plays-inline="true"
-        class="border-skin-line border"
+    autoplay
+    muted="muted"
+    controls
+    plays-inline="true"
+    class="border-skin-line border"
 >
-        <source
-                src="https://github.com/satnaing/astro-paper/assets/17761689/e13babbc-2d78-405d-8758-ca31915e41b0"
-                type="video/mp4"
-        ></source>
+    <source
+        src="https://github.com/satnaing/astro-paper/assets/17761689/e13babbc-2d78-405d-8758-ca31915e41b0"
+        type="video/mp4"
+    ></source>
 </video>
 
 ## Empty `modDatetime` changes
@@ -153,22 +153,22 @@ To allow the key to be there with no value we need to edit line 10 to add the `.
 
 ```ts
 const blog = defineCollection({
-        type: "content",
-        schema: ({ image }) =>
-                z.object({
-                        author: z.string().default(SITE.author),
-                        pubDatetime: z.date(),
-                        modDatetime: z.date().optional(), // [!code --]
-                        modDatetime: z.date().optional().nullable(), // [!code ++]
-                        title: z.string(),
-                        featured: z.boolean().optional(),
-                        draft: z.boolean().optional(),
-                        tags: z.array(z.string()).default(["others"]),
-                        ogImage: image().or(z.string()).optional(),
-                        description: z.string(),
-                        canonicalURL: z.string().optional(),
-                        readingTime: z.string().optional(),
-                }),
+    type: "content",
+    schema: ({ image }) =>
+        z.object({
+            author: z.string().default(SITE.author),
+            pubDatetime: z.date(),
+            modDatetime: z.date().optional(), // [!code --]
+            modDatetime: z.date().optional().nullable(), // [!code ++]
+            title: z.string(),
+            featured: z.boolean().optional(),
+            draft: z.boolean().optional(),
+            tags: z.array(z.string()).default(["others"]),
+            ogImage: image().or(z.string()).optional(),
+            description: z.string(),
+            canonicalURL: z.string().optional(),
+            readingTime: z.string().optional(),
+        }),
 });
 ```
 
@@ -176,23 +176,23 @@ To stop the IDE complaining in the blog engine files I have also done the follow
 
 1. added `| null` to line 15 in `src/layouts/Layout.astro` so that it looks like
 
-      ```typescript
-      export interface Props {
-              title?: string;
-              author?: string;
-              description?: string;
-              ogImage?: string;
-              canonicalURL?: string;
-              pubDatetime?: Date;
-              modDatetime?: Date | null;
-      }
-      ```
+    ```typescript
+    export interface Props {
+        title?: string;
+        author?: string;
+        description?: string;
+        ogImage?: string;
+        canonicalURL?: string;
+        pubDatetime?: Date;
+        modDatetime?: Date | null;
+    }
+    ```
 
 2. added `| null` to line 5 in `src/components/Datetime.tsx` so that it looks like
 
-      ```typescript
-      interface DatetimesProps {
-              pubDatetime: string | Date;
-              modDatetime: string | Date | undefined | null;
-      }
-      ```
+    ```typescript
+    interface DatetimesProps {
+        pubDatetime: string | Date;
+        modDatetime: string | Date | undefined | null;
+    }
+    ```

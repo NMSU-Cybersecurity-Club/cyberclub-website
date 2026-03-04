@@ -5,7 +5,7 @@ slug: astro-paper-v5
 featured: true
 ogImage: ../../../assets/images/AstroPaper-v5.png
 tags:
-        - release
+    - release
 description: "AstroPaper v5: keep the clean look, updates under the hood."
 ---
 
@@ -32,19 +32,19 @@ Additionally, the color palette across the UI has been updated. The new palette 
 ```css
 :root,
 html[data-theme="light"] {
-        --background: #fdfdfd;
-        --foreground: #282728;
-        --accent: #006cac;
-        --muted: #e6e6e6;
-        --border: #ece9e9;
+    --background: #fdfdfd;
+    --foreground: #282728;
+    --accent: #006cac;
+    --muted: #e6e6e6;
+    --border: #ece9e9;
 }
 
 html[data-theme="dark"] {
-        --background: #212737;
-        --foreground: #eaedf3;
-        --accent: #ff6b01;
-        --muted: #343f60bf;
-        --border: #ab4b08;
+    --background: #212737;
+    --foreground: #eaedf3;
+    --accent: #ff6b01;
+    --muted: #343f60bf;
+    --border: #ab4b08;
 }
 ```
 

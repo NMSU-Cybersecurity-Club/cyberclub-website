@@ -1,0 +1,17 @@
+---
+layout: ../layouts/PageLayout.astro
+title: "Members and Alumni"
+---
+
+import MemberCard from "../components/MemberCard.astro";
+import testmemberimage from "../assets/images/forrest-gump-quote.png";
+
+Here's a list of all the members and alumni in our club
+
+<MemberCard
+    title="Mord Schmord"
+    description="Long time member of the club"
+    image={testmemberimage}
+    imageAlt="testimage"
+    link="/"
+/>

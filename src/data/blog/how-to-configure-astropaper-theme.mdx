@@ -7,8 +7,8 @@ slug: how-to-configure-astropaper-theme
 featured: true
 draft: false
 tags:
-        - configuration
-        - docs
+    - configuration
+    - docs
 description: How you can make AstroPaper theme absolutely yours.
 ---
 
@@ -76,10 +76,10 @@ The default `max-width` for the entire blog is `768px` (`max-w-3xl`). If you'd l
 
 ```css file=src/styles/global.css
 @utility max-w-app {
-        /* [!code --:1] */
-        @apply max-w-3xl;
-        /* [!code ++:1] */
-        @apply max-w-4xl xl:max-w-5xl;
+    /* [!code --:1] */
+    @apply max-w-3xl;
+    /* [!code ++:1] */
+    @apply max-w-4xl xl:max-w-5xl;
 }
 ```
 
@@ -104,24 +104,24 @@ You might want to use this option if you want to use an SVG logo.
 - First add an SVG inside `src/assets` directory. (eg: `src/assets/dummy-logo.svg`)
 - Then import that SVG inside `Header.astro`
 
-     ```astro file=src/components/Header.astro
-     ---
-     // ...
-     import DummyLogo from "@/assets/dummy-logo.svg";
-     ---
-     ```
+    ```astro file=src/components/Header.astro
+    ---
+    // ...
+    import DummyLogo from "@/assets/dummy-logo.svg";
+    ---
+    ```
 
 - Finally, replace `{SITE.title}` with imported logo.
 
-     ```html
-     <a
-             href="/"
-             class="absolute py-1 text-left text-2xl leading-7 font-semibold whitespace-nowrap sm:static"
-     >
-             <DummyLogo class="scale-75 dark:invert" />
-             {/* {SITE.title} */}
-     </a>
-     ```
+    ```html
+    <a
+        href="/"
+        class="absolute py-1 text-left text-2xl leading-7 font-semibold whitespace-nowrap sm:static"
+    >
+        <DummyLogo class="scale-75 dark:invert" />
+        {/* {SITE.title} */}
+    </a>
+    ```
 
 The best part of this approach is that you can customize your SVG styles as needed. In the example above, you can see how the SVG logo color can be inverted in dark mode.
 
@@ -132,25 +132,25 @@ If your logo is an image but not SVG, you can use Astro's Image component.
 - Add your logo inside `src/assets` directory. (eg: `src/assets/dummy-logo.png`)
 - Import `Image` and your logo in `Header.astro`
 
-     ```astro file=src/components/Header.astro
-     ---
-     // ...
-     import { Image } from "astro:assets";
-     import dummyLogo from "@/assets/dummy-logo.png";
-     ---
-     ```
+    ```astro file=src/components/Header.astro
+    ---
+    // ...
+    import { Image } from "astro:assets";
+    import dummyLogo from "@/assets/dummy-logo.png";
+    ---
+    ```
 
 - Then, replace `{SITE.title}` with imported logo.
 
-     ```html
-     <a
-             href="/"
-             class="absolute py-1 text-left text-2xl leading-7 font-semibold whitespace-nowrap sm:static"
-     >
-             <image src="{dummyLogo}" alt="Dummy Blog" class="dark:invert" />
-             {/* {SITE.title} */}
-     </a>
-     ```
+    ```html
+    <a
+        href="/"
+        class="absolute py-1 text-left text-2xl leading-7 font-semibold whitespace-nowrap sm:static"
+    >
+        <image src="{dummyLogo}" alt="Dummy Blog" class="dark:invert" />
+        {/* {SITE.title} */}
+    </a>
+    ```
 
 With this approach, you can still adjust your image's appearance using CSS classes. However, this might not always fit what you want. If you need to display different logo images based on light or dark mode, check how light/dark icons are handled inside the `Header.astro` component.
 
@@ -162,30 +162,30 @@ You can configure social links in `SOCIALS` object inside `constants.ts`.
 
 ```ts file=src/constants.ts
 export const SOCIALS = [
-        {
-                name: "GitHub",
-                href: "https://github.com/satnaing/astro-paper",
-                linkTitle: ` ${SITE.title} on GitHub`,
-                icon: IconGitHub,
-        },
-        {
-                name: "X",
-                href: "https://x.com/username",
-                linkTitle: `${SITE.title} on X`,
-                icon: IconBrandX,
-        },
-        {
-                name: "LinkedIn",
-                href: "https://www.linkedin.com/in/username/",
-                linkTitle: `${SITE.title} on LinkedIn`,
-                icon: IconLinkedin,
-        },
-        {
-                name: "Mail",
-                href: "mailto:yourmail@gmail.com",
-                linkTitle: `Send an email to ${SITE.title}`,
-                icon: IconMail,
-        },
+    {
+        name: "GitHub",
+        href: "https://github.com/satnaing/astro-paper",
+        linkTitle: ` ${SITE.title} on GitHub`,
+        icon: IconGitHub,
+    },
+    {
+        name: "X",
+        href: "https://x.com/username",
+        linkTitle: `${SITE.title} on X`,
+        icon: IconBrandX,
+    },
+    {
+        name: "LinkedIn",
+        href: "https://www.linkedin.com/in/username/",
+        linkTitle: `${SITE.title} on LinkedIn`,
+        icon: IconLinkedin,
+    },
+    {
+        name: "Mail",
+        href: "mailto:yourmail@gmail.com",
+        linkTitle: `Send an email to ${SITE.title}`,
+        icon: IconMail,
+    },
 ] as const;
 ```
 

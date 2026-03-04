@@ -7,8 +7,8 @@ slug: dynamic-og-image-generation-in-astropaper-blog-posts
 featured: false
 draft: false
 tags:
-        - docs
-        - release
+    - docs
+    - release
 description: New feature in AstroPaper v1.4.0, introducing dynamic OG image generation for blog posts.
 ---
 
@@ -48,40 +48,40 @@ Titles with non-latin characters won't display properly out of the box. To resol
 
 ```ts file=src/utils/loadGoogleFont.ts
 async function loadGoogleFonts(text: string): Promise<
-        Array<{
-                name: string;
-                data: ArrayBuffer;
-                weight: number;
-                style: string;
-        }>
+    Array<{
+        name: string;
+        data: ArrayBuffer;
+        weight: number;
+        style: string;
+    }>
 > {
-        const fontsConfig = [
-                {
-                        name: "Noto Sans JP",
-                        font: "Noto+Sans+JP",
-                        weight: 400,
-                        style: "normal",
-                },
-                {
-                        name: "Noto Sans JP",
-                        font: "Noto+Sans+JP:wght@700",
-                        weight: 700,
-                        style: "normal",
-                },
-                {
-                        name: "Noto Sans",
-                        font: "Noto+Sans",
-                        weight: 400,
-                        style: "normal",
-                },
-                {
-                        name: "Noto Sans",
-                        font: "Noto+Sans:wght@700",
-                        weight: 700,
-                        style: "normal",
-                },
-        ];
-        // ...
+    const fontsConfig = [
+        {
+            name: "Noto Sans JP",
+            font: "Noto+Sans+JP",
+            weight: 400,
+            style: "normal",
+        },
+        {
+            name: "Noto Sans JP",
+            font: "Noto+Sans+JP:wght@700",
+            weight: 700,
+            style: "normal",
+        },
+        {
+            name: "Noto Sans",
+            font: "Noto+Sans",
+            weight: 400,
+            style: "normal",
+        },
+        {
+            name: "Noto Sans",
+            font: "Noto+Sans:wght@700",
+            weight: 700,
+            style: "normal",
+        },
+    ];
+    // ...
 }
 ```
 
