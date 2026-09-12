@@ -55,6 +55,11 @@ export default defineConfig({
         optimizeDeps: {
             exclude: ["@resvg/resvg-js"],
         },
+        server: {
+            allowedHosts: process.env.ALLOWED_HOSTS
+                ? process.env.ALLOWED_HOSTS.split(",")
+                : ["localhost", "127.0.0.1", "[::1]"],
+        }
     },
     image: {
         responsiveStyles: true,
