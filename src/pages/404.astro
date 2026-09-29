@@ -1,0 +1,24 @@
+---
+import Navbar from "../components/Navbar.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title={`404 Not Found | NMSU Cybersecurity Club`}>
+  <Navbar />
+  <main
+    id="main-content"
+    class="mx-auto flex max-w-app flex-1 items-center justify-center"
+  >
+    <div class="content-wrapper">
+      <h1 class="text-9xl font-bold text-accent">404</h1>
+      <span aria-hidden="true">¯\_(ツ)_/¯</span>
+      <p class="mt-4 text-2xl sm:text-3xl">Page Not Found</p>
+      <a
+        href="/"
+        class="my-6 text-lg underline decoration-dashed underline-offset-8"
+      >
+        Go back home
+      </a>
+    </div>
+  </main>
+</BaseLayout>

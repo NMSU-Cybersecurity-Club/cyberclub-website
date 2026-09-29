@@ -1,0 +1,131 @@
+/* Website primary theme based on Catppuccin */
+/* DEFAULT: Catppuccin Latte (Light) */
+:root {
+  --page-gutter: 3rem;
+  --page-max-width: 80ch;
+  /* Base Backgrounds */
+  --ctp-base: #eff1f5;
+  --ctp-mantle: #e6e9ef;
+  --ctp-crust: #dce0e8;
+
+  /* Text Colors */
+  --ctp-text: #4c4f69;
+  --ctp-subtext0: #6c6f85;
+  --ctp-subtext1: #5c5f77;
+
+  /* Accents (Latte) */
+  --ctp-blue: #1e66f5;
+  --ctp-red: #d20f39;
+  --ctp-green: #40a02b;
+  --ctp-yellow: #df8e1d;
+
+  /* UI Elements */
+  --ctp-surface0: #ccd0da;
+  --ctp-surface1: #bcc0cc;
+  --ctp-overlay0: #acb0be;
+
+  /* Apply background color */
+  background-color: var(--ctp-base);
+}
+
+/* AUTOMATIC: Catppuccin Mocha (Dark) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Base Backgrounds */
+    --ctp-base: #1e1e2e;
+    --ctp-mantle: #181825;
+    --ctp-crust: #11111b;
+
+    /* Text Colors */
+    --ctp-text: #cdd6f4;
+    --ctp-subtext0: #a6adc8;
+    --ctp-subtext1: #bac2de;
+
+    /* Accents (Mocha) */
+    --ctp-blue: #89b4fa;
+    --ctp-red: #f38ba8;
+    --ctp-green: #a6e3a1;
+    --ctp-yellow: #f9e2af;
+
+    /* UI Elements */
+    --ctp-surface0: #313244;
+    --ctp-surface1: #45475a;
+    --ctp-overlay0: #6c7086;
+
+    /* Apply background color */
+    background-color: var(--ctp-base);
+  }
+}
+/* Fonts */
+@font-face {
+  font-family: 'AdwaitaSans';
+  src: url('/fonts/adwaita-sans-regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AdwaitaMono';
+  src: url('/fonts/adwaita-mono-bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply the colors globally */
+body {
+  color: var(--ctp-text);
+  font-family: AdwaitaSans, -apple-system, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Link colors */
+a {
+  color: var(--ctp-blue);
+}
+
+/* Utility Class for generic cards/containers */
+.card {
+    background-color: var(--ctp-mantle);
+    border: 1px solid var(--ctp-surface0);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* RESPONSIVE: On small screens, shrink the gutter */
+@media (max-width: 600px) {
+  :root {
+    --page-gutter:1rem;
+  }
+}
+
+/* Main wrapper to prevent contents from touching the edges of the page or being otherwise ugly */
+.content-wrapper {
+  width: 100%;
+  
+  /* 1. Stop content from getting too wide */
+  max-width: var(--page-max-width);
+  
+  /* 2. Center the container itself */
+  margin-inline: auto;
+  
+  /* 3. Ensure text never touches the exact edge of the screen */
+  padding-inline: var(--page-gutter);
+  
+  /* Ensure padding is included in width calculations */
+  box-sizing: border-box; 
+}
+
+/* Override for full width content */
+.full-width {
+  max-width: 100%;
+  padding-inline: 0;
+}
+
+footer {
+  margin-top: 2rem;
+}

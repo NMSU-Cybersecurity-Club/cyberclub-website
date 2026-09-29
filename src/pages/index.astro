@@ -1,0 +1,144 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import bannerImage from "../images/binary-banner.webp";
+import Navbar from "../components/Navbar.astro";
+import Wordmark from "../images/logos/wordmark.astro";
+---
+
+<BaseLayout title="Cybersecurity Club at NMSU" coverViewport={true}>
+  <Navbar heroMode={true} />
+  <section class="banner-container" id="banner">
+    <Image src={bannerImage} alt="Northern lights" class="banner" />
+    <div class="banner-content">
+      <div class="banner-title">
+        <Wordmark />
+      </div>
+    </div>
+  </section>
+  <div class="content-wrapper">
+    <p>
+      According to all known laws of aviation, there is no way a bee should be able to fly.
+      Its wings are too small to get its fat little body off the ground.
+      The bee, of course, flies anyway because bees don't care what humans think is impossible.
+      Yellow, black. Yellow, black. Yellow, black. Yellow, black.
+      Ooh, black and yellow!
+      Let's shake it up a little.
+      Barry! Breakfast is ready!
+      Coming!
+      Hang on a second.
+      Hello?
+      Barry?
+      Adam?
+      Can you believe this is happening?
+      I can't.
+      I'll pick you up.
+      Looking sharp.
+      Use the stairs, Your father paid good money for those.
+      Sorry. I'm excited.
+      Here's the graduate.
+      We're very proud of you, son.
+      A perfect report card, all B's.
+      Very proud.
+      Ma! I got a thing going here.
+      You got lint on your fuzz.
+      Ow! That's me!
+      Wave to us! We'll be in row 118,000.
+      Bye!
+      Barry, I told you, stop flying in the house!
+      Hey, Adam.
+      Hey, Barry.
+      Is that fuzz gel?
+      A little. Special day, graduation.
+      Never thought I'd make it.
+      Three days grade school, three days high school.
+      Those were awkward.
+      Three days college. I'm glad I took a day and hitchhiked around The Hive.
+      You did come back different.
+    </p>
+  </div>
+</BaseLayout>
+
+<script>
+  const banner = document.getElementById("banner");
+  const title = document.getElementById("title");
+
+  if (title) {
+    const text = title.textContent || "";
+    title.textContent = "";
+
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length && title) {
+        title.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, Math.random() * 100 + 60);
+      }
+    }
+    setTimeout(typeWriter, 300);
+  }
+
+  banner?.addEventListener("mousemove", (e) => {
+    // 1. Get the viewport dimensions
+    const { innerWidth, innerHeight } = window;
+
+    // 2. Calculate mouse position relative to center (-1 to 1)
+    const x = (e.clientX / innerWidth - 0.5) * 2;
+    const y = (e.clientY / innerHeight - 0.25) * 2;
+
+    // 3. Update CSS variables (multiply by max rotation degrees, e.g., 10)
+    title?.style.setProperty("--rot-x", `${y * -15}deg`);
+    title?.style.setProperty("--rot-y", `${x * 7}deg`);
+  });
+</script>
+
+<style>
+  .banner-container {
+    display: grid;
+    grid-template-areas: "stack";
+    height: 50dvh;
+    width: 100%;
+
+    position: relative;
+    overflow: hidden;
+  }
+
+  .banner,
+  .overlay,
+  .banner-content {
+    grid-area: stack;
+  }
+
+  .banner {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+  }
+
+.banner-content {
+    z-index: 2; 
+    place-self: center; 
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+.banner-title {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1000px;
+    --rot-x: 0deg;
+    --rot-y: 0deg;
+    color: #ffffff;
+    display: block;
+  }
+
+.banner-title :global(svg) {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+</style>

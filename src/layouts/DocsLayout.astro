@@ -1,0 +1,15 @@
+---
+// Docs Layout
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+const { frontmatter } = Astro.props;
+const title = frontmatter?.title || Astro.props.title;
+---
+
+<BaseLayout title={title}>
+  <Navbar />
+  <div class="content-wrapper"> 
+    <h1>{title}</h1>
+    <slot />
+  </div>
+</BaseLayout>

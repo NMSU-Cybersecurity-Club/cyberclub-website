@@ -1,0 +1,29 @@
+---
+// Basic base layout
+import "../styles/global.css";
+const { title, coverViewport } = Astro.props;
+const viewportString = coverViewport
+  ? "width=device-width, initial-scale=1, viewport-fit=cover"
+  : "width=device-width, initial-scale=1";
+import NavbarAstroComponent, { Navbar } from "../components/Navbar.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content={viewportString} />
+    <link rel="icon" href="/favicon.ico?v=3" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+    <footer class="content-wrapper">
+      <p>
+        Footer goes here
+      </p>
+    </footer>
+  </body>
+</html>

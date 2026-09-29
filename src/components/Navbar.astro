@@ -1,0 +1,285 @@
+---
+import { Image } from "astro:assets";
+import ColoredLogo from "../images/logos/logo-x128.webp";
+import Logo from "../images/logos/logo-flatcomp.astro";
+import "../styles/global.css";
+
+interface Props {
+  heroMode?: boolean;
+  invert?: boolean;
+}
+
+const { heroMode = false } = Astro.props;
+
+// Auto-populate main from src/pages/main
+const pages = import.meta.glob("../pages/main/**/*.{md,mdx,astro}");
+
+interface NavItem {
+  type: "link" | "dropdown";
+  label: string;
+  url?: string;
+  items?: { label: string; url: string }[];
+}
+
+const navItems: NavItem[] = [];
+const folders: Record<string, { label: string; url: string }[]> = {};
+const rootLinks: Record<string, { label: string; url: string }> = {};
+
+for (const path in pages) {
+  const relativePath = path.replace("../pages/main/", "");
+  const parts = relativePath.split("/");
+
+  if (relativePath.startsWith("index.")) continue;
+
+  let url = "/main/" + relativePath.replace(/\.(md|mdx|astro)$/, "");
+  if (url.endsWith("/index")) url = url.slice(0, -6);
+
+  if (parts.length === 1) {
+    const fileName = parts[0].replace(/\.(md|mdx|astro)$/, "");
+    rootLinks[fileName] = { label: fileName, url };
+  } else if (parts.length === 2) {
+    const folderName = parts[0];
+    const fileName = parts[1].replace(/\.(md|mdx|astro)$/, "");
+    const label = fileName === "index" ? "Overview" : fileName;
+
+    if (!folders[folderName]) folders[folderName] = [];
+    folders[folderName].push({ label, url });
+  }
+}
+
+const allKeys = new Set([...Object.keys(folders), ...Object.keys(rootLinks)]);
+
+for (const key of allKeys) {
+  const folder = folders[key];
+  const root = rootLinks[key];
+
+  if (folder && root) {
+    navItems.push({
+      type: "dropdown",
+      label: root.label,
+      url: root.url,
+      items: folder.sort((a, b) => a.label.localeCompare(b.label)),
+    });
+  } else if (folder) {
+    navItems.push({
+      type: "dropdown",
+      label: key,
+      items: folder.sort((a, b) => a.label.localeCompare(b.label)),
+    });
+  } else if (root) {
+    navItems.push({ type: "link", label: root.label, url: root.url });
+  }
+}
+
+navItems.sort((a, b) => a.label.localeCompare(b.label));
+---
+
+<div class:list={["topnav", { heroMode }]}>
+  {
+    !heroMode && (
+      <a href="/" class="home-link">
+        <div class="home-button">
+          <Logo class="home logo-flat" />
+          <Image
+            src={ColoredLogo}
+            alt="Home selected"
+            class="home logo-colored"
+          />
+        </div>
+      </a>
+    )
+  }
+
+  <div class="nav-links">
+    {
+      navItems.map((item) =>
+        item.type === "link" ? (
+          <a href={item.url} class="nav-item">
+            {item.label}
+          </a>
+        ) : (
+          <div class="dropdown">
+            {item.url ? (
+              <a href={item.url} class="dropbtn">
+                {item.label}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="chevron"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </a>
+            ) : (
+              <button class="dropbtn">
+                {item.label}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="chevron"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+            )}
+            <div class="dropdown-content">
+              {item.items?.map((subItem) => (
+                <a href={subItem.url}>{subItem.label}</a>
+              ))}
+            </div>
+          </div>
+        ),
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .topnav {
+    height: 80px;
+    display: flex;
+    align-items: center; /* Centers the logo vertically */
+    gap: 1rem;
+    padding: 1rem;
+    /* overflow: hidden; Removed to allow dropdowns */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .topnav.heroMode {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    pointer-events: none;
+    color: white !important;
+  }
+
+  .topnav.heroMode > * {
+    pointer-events: auto;
+  }
+
+  .topnav.heroMode .nav-item,
+  .topnav.heroMode .dropbtn {
+    color: white;
+  }
+
+  .home-link {
+    height: 100%;
+    display: block;
+  }
+
+  .home-button {
+    position: relative;
+    height: 100%; /* Forces container to stay within 3dvh */
+    aspect-ratio: 1 / 1; /* Adjust based on your logo's shape */
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    color: var(--ctp-text);
+  }
+
+  .home {
+    height: 100%;
+    width: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .logo-colored {
+    opacity: 0;
+  }
+
+  .home-button:hover .logo-colored {
+    opacity: 1; /* "The Fade into Color" */
+  }
+
+  .home-button:hover .logo-flat {
+    opacity: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    height: 100%;
+  }
+
+  .nav-item,
+  .dropbtn {
+    color: var(--ctp-text);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: inherit;
+  }
+
+  .dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 80%;
+    left: 0;
+    background-color: var(--ctp-mantle, #222);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    border-radius: 12px;
+    border: 1px solid var(--ctp-surface0, #444);
+    padding: 0.5rem;
+    flex-direction: column;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: flex;
+  }
+
+  .dropdown-content a {
+    color: var(--ctp-text);
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+  }
+
+  .dropdown-content a:hover {
+    background-color: var(--ctp-surface0, #444);
+  }
+
+  .chevron {
+    transition: transform 0.2s;
+  }
+
+  .dropdown:hover .chevron {
+    transform: rotate(180deg);
+  }
+</style>
