@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/base.astro'
-import { formatNewsDate, getPublishedNews } from '../lib/news'
+import { formatNewsDate, getAllNewsItems } from '../lib/news'
 
-const posts = await getPublishedNews()
+const posts = await getAllNewsItems()
 ---
 <Layout title="News & Writeups">
   <main id="main" class="page">
@@ -11,9 +11,15 @@ const posts = await getPublishedNews()
       <section class="news-list" aria-label="News and writeups">
         {posts.map((post) => (
           <article class="news-item">
-            <p class="news-meta"><time datetime={post.data.date.toISOString()}>{formatNewsDate(post.data.date)}</time>{post.data.author && ` · ${post.data.author}`}</p>
-            <h2><a href={`/news/${post.id}/`}>{post.data.title}</a></h2>
-            <p>{post.data.description}</p>
+            {(post.date || post.author) && (
+              <p class="news-meta">
+                {post.date && <time datetime={post.date.toISOString()}>{formatNewsDate(post.date)}</time>}
+                {post.date && post.author && ' · '}
+                {post.author}
+              </p>
+            )}
+            <h2><a href={post.href}>{post.title}</a></h2>
+            {post.description && <p>{post.description}</p>}
           </article>
         ))}
       </section>

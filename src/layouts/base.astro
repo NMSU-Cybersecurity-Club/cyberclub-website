@@ -1,4 +1,5 @@
 ---
+import { ClientRouter, fade } from 'astro:transitions'
 import '../lib/main.css'
 
 const { title = 'Cybersecurity Club at NMSU', description = 'Cybersecurity Club at NMSU' } = Astro.props
@@ -24,10 +25,15 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Figtree:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+  <script is:inline>
+    document.documentElement.classList.add('is-loading')
+    window.setTimeout(() => document.documentElement.classList.remove('is-loading'), 2500)
+  </script>
+  <ClientRouter />
 </head>
-<body>
+<body transition:animate={fade({ duration: '0.2s' })}>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header">
+  <header class="site-header" transition:persist transition:name="site-header" transition:animate="none">
     <div class="header-inner">
       <a href="/" class="site-brand" aria-label="Cybersecurity Club at NMSU home">
         <img src="/brand-shield-color.svg" alt="" width="64" height="49" />
@@ -64,8 +70,42 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
     </div>
   </footer>
   <script>
-    import { initMotion } from '../lib/motion'
-    initMotion()
+    import { cleanupMotion, initMotion } from '../lib/motion'
+
+    function revealPage() {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.remove('is-loading')
+      })
+    }
+
+    function syncHeaderNav() {
+      const currentPath = window.location.pathname.replace(/\/$/, '') || '/'
+      for (const link of document.querySelectorAll('.site-header nav a')) {
+        const href = link.getAttribute('href')?.replace(/\/$/, '') || '/'
+        if (href === currentPath) {
+          link.setAttribute('aria-current', 'page')
+        } else {
+          link.removeAttribute('aria-current')
+        }
+      }
+      const mobileMenu = document.querySelector('.site-header .mobile-menu')
+      if (mobileMenu instanceof HTMLDetailsElement) {
+        mobileMenu.open = false
+      }
+    }
+
+    document.addEventListener('astro:before-swap', cleanupMotion)
+    document.addEventListener('astro:after-swap', syncHeaderNav)
+    document.addEventListener('astro:page-load', () => {
+      initMotion()
+      revealPage()
+    })
+
+    if (document.readyState === 'complete') {
+      revealPage()
+    } else {
+      window.addEventListener('load', revealPage, { once: true })
+    }
   </script>
 </body>
 </html>
