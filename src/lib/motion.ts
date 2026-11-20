@@ -114,7 +114,8 @@ function mobileMenu() {
   const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu')
   const summary = menu?.querySelector('summary')
   const nav = menu?.querySelector<HTMLElement>('.mobile-nav')
-  if (!menu || !summary || !nav) return
+  if (!menu || !summary || !nav || menu.dataset.menuInit) return
+  menu.dataset.menuInit = 'true'
   const links = nav.querySelectorAll('a')
   let closing = false
 
@@ -158,8 +159,13 @@ function mobileMenu() {
   })
 }
 
+export function cleanupMotion() {
+  ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+}
+
 export function initMotion() {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  cleanupMotion()
   playHero()
   playPageHeading()
   revealSections()

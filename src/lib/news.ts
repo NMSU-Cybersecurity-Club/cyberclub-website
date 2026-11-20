@@ -11,3 +11,9 @@ export function formatNewsDate(date: Date) {
     timeZone: 'UTC',
   }).format(date)
 }
+
+export function parseNewsDate(value?: string | Date): Date | undefined {
+  if (!value) return undefined
+  const date = value instanceof Date ? value : new Date(value)
+  return Number.isNaN(date.valueOf()) ? undefined : date
+}

@@ -12,17 +12,20 @@
   --rose: #ec879e;
   --volt: #27b7eb;
   --ice: #94cdf0;
+  --success: #4ade80;
+  --caution: #facc15;
   --night: #000000;
 }
 html { scroll-behavior: smooth; }
-body { min-height: 100vh; display: flex; flex-direction: column; overflow-x: clip; background: var(--bg); color: var(--ink); font: 400 17px/1.6 Figtree, system-ui, sans-serif; }
+html.is-loading body { opacity: 0; }
+body { min-height: 100vh; display: flex; flex-direction: column; overflow-x: clip; background: var(--bg); color: var(--ink); font: 400 17px/1.6 Figtree, system-ui, sans-serif; transition: opacity .15s ease; }
 body > main { flex: 1; }
 a { color: inherit; }
 ::selection { color: var(--night); background: var(--ice); }
 :focus-visible { outline: 3px solid var(--volt); outline-offset: 4px; }
 .skip-link { position: absolute; top: -5rem; left: 1rem; z-index: 10; background: var(--volt); color: var(--night); padding: .75rem; }
 .skip-link:focus { top: 1rem; }
-.site-header { background: var(--bg); border-bottom: 1px solid var(--line); }
+.site-header { position: sticky; top: 0; z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
 .header-inner { max-width: 1280px; margin: auto; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px 28px; flex-wrap: wrap; }
 .site-brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; line-height: 1.1; }
 .site-brand img { width: 64px; height: auto; flex-shrink: 0; }
@@ -85,6 +88,7 @@ h3 { font-size: 1.2rem; font-weight: 800; }
 .article-content { max-width: 75ch; overflow-wrap: anywhere; }
 .article-content > * + * { margin-top: 1.25em; }
 .article-content h2, .article-content h3, .article-content h4 { margin-top: 1.8em; }
+.article-content h4 { font-size: 1rem; font-weight: 800; color: var(--ink); }
 .article-content a { color: var(--ice); text-decoration: underline; text-underline-offset: 3px; }
 .article-content ul, .article-content ol { padding-left: 1.5rem; }
 .article-content ul { list-style: disc; }
@@ -140,4 +144,11 @@ h3 { font-size: 1.2rem; font-weight: 800; }
   .card { padding: 24px 0; }
   .mission { grid-template-columns: 1fr; gap: 20px; padding-top: 28px; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-media { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body { transition: none; }
+  .hero-media { transform: none; }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}

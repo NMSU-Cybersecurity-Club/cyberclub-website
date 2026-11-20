@@ -4,6 +4,6 @@ services:
     ports:
       - "4321:4321"
     volumes:
-      - ./src:/app/src
-      - ./public:/app/public
-      - ./astro.config.mjs:/app/astro.config.mjs
+      - ./src:/app/src:z
+      - ./public:/app/public:z
+      - ./astro.config.mjs:/app/astro.config.mjs:z
