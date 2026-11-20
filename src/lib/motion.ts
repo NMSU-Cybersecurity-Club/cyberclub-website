@@ -5,6 +5,27 @@ gsap.registerPlugin(ScrollTrigger)
 
 const ease = 'expo.out'
 
+let heroScroll: (() => void) | undefined
+
+function parallaxHero() {
+  const hero = document.querySelector<HTMLElement>('[data-parallax]')
+  const media = hero?.querySelector<HTMLElement>('.hero-media')
+  if (!hero || !media) return
+  let queued = false
+  const update = () => {
+    queued = false
+    const shift = Math.min(window.scrollY * 0.5, hero.offsetHeight * 0.2)
+    media.style.setProperty('--shift', `${shift}px`)
+  }
+  heroScroll = () => {
+    if (!queued) {
+      queued = true
+      requestAnimationFrame(update)
+    }
+  }
+  window.addEventListener('scroll', heroScroll, { passive: true })
+}
+
 function playHero() {
   if (!document.querySelector('.hero-banner')) return
   gsap.timeline({ defaults: { ease } })
@@ -161,11 +182,16 @@ function mobileMenu() {
 
 export function cleanupMotion() {
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+  if (heroScroll) {
+    window.removeEventListener('scroll', heroScroll)
+    heroScroll = undefined
+  }
 }
 
 export function initMotion() {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
   cleanupMotion()
+  parallaxHero()
   playHero()
   playPageHeading()
   revealSections()
