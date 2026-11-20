@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    ports:
+      - "4321:4321"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./astro.config.mjs:/app/astro.config.mjs

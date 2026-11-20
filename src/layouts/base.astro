@@ -1,0 +1,71 @@
+---
+import '../lib/main.css'
+
+const { title = 'Cybersecurity Club at NMSU', description = 'Cybersecurity Club at NMSU' } = Astro.props
+const navItems = [
+  { name: 'Events', href: '/events' },
+  { name: 'Activities', href: '/activities' },
+  { name: 'News & Writeups', href: '/news' },
+  { name: 'Members', href: '/members' },
+  { name: 'Sponsorship', href: '/sponsorship' },
+  { name: 'Contact', href: '/contact' },
+]
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/'
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <title>{title === 'Cybersecurity Club at NMSU' ? title : `${title} | Cybersecurity Club at NMSU`}</title>
+  <link rel="icon" href="/brand-shield-mono.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Figtree:wght@400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-brand" aria-label="Cybersecurity Club at NMSU home">
+        <img src="/brand-shield-color.svg" alt="" width="64" height="49" />
+        <span>Cybersecurity Club <small>at NMSU</small></span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        {navItems.map((item) => (
+          <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.name}</a>
+        ))}
+      </nav>
+      <details class="mobile-menu">
+        <summary aria-label="Menu">
+          <svg class="menu-open-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+          <svg class="menu-close-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </summary>
+        <nav aria-label="Main navigation" class="mobile-nav">
+          {navItems.map((item) => (
+            <a href={item.href} aria-current={currentPath === item.href ? 'page' : undefined}>{item.name}</a>
+          ))}
+        </nav>
+      </details>
+    </div>
+  </header>
+  <slot />
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="Club links">
+        <a href="https://crimsonconnection.nmsu.edu/organization/Cybersecurityclub">Crimson Connection</a>
+        <a href="https://www.instagram.com/nmsu.cybersecurityclub/">Instagram</a>
+        <a href="https://github.com/NMSU-Cybersecurity-Club">GitHub</a>
+        <a href="mailto:cybersecurityclub@nmsu.edu">Email</a>
+      </nav>
+      <p>&copy; {new Date().getFullYear()} Cybersecurity Club at NMSU</p>
+    </div>
+  </footer>
+  <script>
+    import { initMotion } from '../lib/motion'
+    initMotion()
+  </script>
+</body>
+</html>

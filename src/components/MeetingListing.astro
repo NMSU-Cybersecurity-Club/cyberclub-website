@@ -1,0 +1,25 @@
+---
+import calendar from '../data/calendar.json'
+import { publicCalendarUrl } from '../lib/calendar.mjs'
+
+const calendarUrl = publicCalendarUrl(calendar.htmlUrl)
+const subscriptionUrl = publicCalendarUrl(calendar.icsUrl)
+---
+
+<section class="notice meeting-listing" aria-labelledby="upcoming-events-title">
+  <h2 id="upcoming-events-title">Upcoming club events</h2>
+  {calendarUrl ? (
+    <>
+      <p>View the club's calendar for upcoming meetings and events.</p>
+      <div class="actions">
+        <a class="button" href={calendarUrl}>View club calendar ↗</a>
+        {subscriptionUrl && <a class="button secondary" href={subscriptionUrl}>Subscribe to calendar ↗</a>}
+      </div>
+    </>
+  ) : (
+    <>
+      <p>The club calendar is not available here yet. Check Crimson Connection for current events.</p>
+      <div class="actions"><a class="button" href="https://crimsonconnection.nmsu.edu/organization/Cybersecurityclub/events">View club events ↗</a></div>
+    </>
+  )}
+</section>

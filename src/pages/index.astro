@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/base.astro'
+import Wordmark from '../components/Wordmark.astro'
+---
+
+<Layout>
+  <main id="main" class="page">
+    <section class="hero-banner" aria-labelledby="hero-title" data-parallax>
+      <div class="hero-media" aria-hidden="true">
+        <img src="/images/binary-banner.webp" alt="" width="2560" height="1440" loading="eager" fetchpriority="high" />
+      </div>
+      <div class="hero-content">
+        <h1 id="hero-title" class="hero-wordmark" aria-label="Cybersecurity Club at NMSU"><Wordmark /></h1>
+        <p class="lede">Building practical cybersecurity skills through hands-on learning, challenges, and community.</p>
+        <div class="actions">
+          <a class="button" href="/events">Find an event <span aria-hidden="true">→</span></a>
+          <a class="button secondary" href="https://discord.gg/eFvEd5zYtM">Join us on Discord <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="mission" aria-labelledby="mission-title">
+      <h2 id="mission-title">Our mission</h2>
+      <div class="mission-text">
+        <p>The Cybersecurity Club at NMSU helps students develop practical cybersecurity skills through hands-on learning. Its activities include Capture the Flag puzzles and real-world security challenges, with a focus on building skills, confidence, and community.</p>
+        <p>The club's stated goal is an inclusive space where members can grow, collaborate, and prepare for cybersecurity careers. Its Instagram describes a community for NMSU students across disciplines.</p>
+        <p class="source">Sources: <a href="https://crimsonconnection.nmsu.edu/organization/Cybersecurityclub">Crimson Connection</a> and <a href="https://www.instagram.com/nmsu.cybersecurityclub/">club Instagram</a>.</p>
+      </div>
+    </section>
+    <script>
+      const hero = document.querySelector<HTMLElement>('[data-parallax]')
+      const media = hero?.querySelector<HTMLElement>('.hero-media')
+      if (hero && media && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let queued = false
+        const update = () => {
+          queued = false
+          const shift = Math.min(window.scrollY * 0.5, hero.offsetHeight * 0.2)
+          media.style.setProperty('--shift', `${shift}px`)
+        }
+        window.addEventListener('scroll', () => {
+          if (!queued) { queued = true; requestAnimationFrame(update) }
+        }, { passive: true })
+      }
+    </script>
+  </main>
+</Layout>

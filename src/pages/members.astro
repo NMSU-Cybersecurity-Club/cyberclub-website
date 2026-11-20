@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/base.astro'
+import Officer from '../components/Officer.astro'
+import leadership from '../data/leadership.json'
+
+const { current, past } = leadership
+---
+
+<Layout title="Members">
+  <main id="main" class="page">
+    <header class="page-heading">
+      <h1>Our people</h1>
+      <p class="lede">Meet the students who make up the Cybersecurity Club at NMSU, and the leaders who helped shape it.</p>
+    </header>
+
+    <section class="roster-section" aria-labelledby="leadership-title">
+      <div class="roster-intro">
+        <h2 id="leadership-title">Leadership</h2>
+        <p>Every year brings a new team. Choose an academic year to meet the people who led the club.</p>
+      </div>
+
+      {(current || past.length > 0) ? (
+        <ol class="leadership-timeline" aria-label="Leadership by academic year, newest first">
+          {current && (
+            <li class="timeline-item current-term">
+              <details class="timeline-term" name="leadership-years" open>
+                <summary>
+                  <span class="term-title"><span class="term-year">{current.academicYear}</span><span class="term-label">Current leadership</span></span>
+                  <span class="term-control" aria-hidden="true"><span class="term-open">View team</span><span class="term-close">Close team</span><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                </summary>
+                {current.leaders.length > 0 ? (
+                  <ul class="roster-list" aria-label={`${current.academicYear} leadership`}>
+                    {current.leaders.map((leader) => <Officer {...leader} eager />)}
+                  </ul>
+                ) : <p class="roster-empty">The current leadership roster hasn't been added yet.</p>}
+              </details>
+            </li>
+          )}
+          {past.map((term) => (
+            <li class="timeline-item">
+              <details class="timeline-term" name="leadership-years">
+                <summary>
+                  <span class="term-title"><span class="term-year">{term.academicYear}</span><span class="term-label">Past leadership</span></span>
+                  <span class="term-control" aria-hidden="true"><span class="term-open">View team</span><span class="term-close">Close team</span><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                </summary>
+                {term.leaders.length > 0 ? (
+                  <ul class="roster-list" aria-label={`${term.academicYear} leadership`}>
+                    {term.leaders.map((leader) => <Officer {...leader} />)}
+                  </ul>
+                ) : <p class="roster-empty">Leadership details for this year haven't been added yet.</p>}
+              </details>
+            </li>
+          ))}
+        </ol>
+      ) : <p class="roster-empty">Leadership records haven't been added yet.</p>}
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+  .roster-section { max-width: 920px; }
+  .roster-intro > p, .roster-empty { color: var(--muted); }
+  .roster-intro > p { margin-top: 12px; max-width: 60ch; }
+  .leadership-timeline { position: relative; margin-top: 34px; padding-left: 34px; list-style: none; }
+  .leadership-timeline::before { content: ''; position: absolute; left: 8px; top: 24px; bottom: 32px; width: 1px; background: #526273; transform: scaleY(var(--line, 1)); transform-origin: top; }
+  .timeline-item { position: relative; padding-bottom: 12px; }
+  .timeline-item::before { content: ''; position: absolute; z-index: 1; top: 30px; left: -30px; width: 9px; height: 9px; border: 2px solid var(--ice); border-radius: 50%; background: var(--bg); }
+  .current-term::before { background: var(--volt); border-color: var(--volt); }
+  .timeline-term { border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+  .timeline-term[open] { border-color: #596678; }
+  .timeline-term summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 70px; padding: 16px 22px; cursor: pointer; list-style: none; }
+  .timeline-term summary::-webkit-details-marker { display: none; }
+  .timeline-term summary:hover { background: var(--surface-raised); }
+  .term-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+  .term-year { color: var(--ink); font-size: clamp(1.25rem, 2.2vw, 1.65rem); font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .term-label { color: var(--muted); font-size: .875rem; font-weight: 600; }
+  .current-term .term-label { color: var(--ice); }
+  .term-control { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; color: var(--ice); font-size: .875rem; font-weight: 600; }
+  .term-control svg { width: 18px; height: 18px; transition: transform .2s ease-out; }
+  .timeline-term[open] .term-control svg { transform: rotate(180deg); }
+  .term-close, .timeline-term[open] .term-open { display: none; }
+  .timeline-term[open] .term-close { display: inline; }
+  .roster-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; padding: 0 22px 20px; }
+  .roster-empty { padding: 0 22px 24px; }
+  @media (max-width: 520px) {
+    .leadership-timeline { padding-left: 20px; }
+    .timeline-item::before { left: -16px; }
+    .timeline-term summary { padding: 14px 14px; min-height: 0; }
+    .term-title { display: grid; gap: 2px; }
+    .term-year { font-size: 1.2rem; }
+    .term-control { font-size: .8rem; }
+    .roster-list { grid-template-columns: 1fr; padding: 0 14px 6px; }
+    .roster-empty { padding: 0 14px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .term-control svg { transition: none; } }
+</style>

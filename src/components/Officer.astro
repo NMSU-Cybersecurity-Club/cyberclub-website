@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets'
+const { name, role, image, eager = false, links = [] } = Astro.props
+
+const officerLinks = Array.isArray(links) ? links.flatMap((link) => {
+  if (typeof link?.label !== 'string' || !link.label.trim() || typeof link?.url !== 'string') return []
+  try {
+    const url = new URL(link.url)
+    if (!['http:', 'https:'].includes(url.protocol)) return []
+    const host = url.hostname.toLowerCase()
+    const icon = host === 'linkedin.com' || host.endsWith('.linkedin.com') ? 'linkedin'
+      : host === 'github.com' || host.endsWith('.github.com') ? 'github' : 'website'
+    return [{ label: link.label.trim(), url: url.href, icon }]
+  } catch {
+    return []
+  }
+}) : []
+---
+
+<li class="officer">
+  <span class="portrait" aria-hidden="true">
+    {image ? (
+      <Image src={image} alt="" loading={eager ? 'eager' : 'lazy'} width={64} height={64} />
+    ) : (
+      <svg viewBox="0 0 64 64" fill="none" focusable="false">
+        <circle cx="32" cy="24" r="9" fill="currentColor" />
+        <path d="M14 55c1-10 8-17 18-17s17 7 18 17" fill="currentColor" />
+      </svg>
+    )}
+  </span>
+  <div class="officer-details">
+    <strong>{name}</strong>
+    <span class="officer-role">{role}</span>
+    {officerLinks.length > 0 && (
+      <div class="officer-links" role="group" aria-label={`${name}'s links`}>
+        {officerLinks.map((link) => (
+          <a href={link.url} aria-label={`${name}: ${link.label}`} title={link.label}>
+            {link.icon === 'linkedin' ? (
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6ZM2 9h4v12H2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.8" /></svg>
+            ) : link.icon === 'github' ? (
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M9 19c-4 1.2-4-2-5.5-2.5M14.5 22v-3.1c0-.9.1-1.5-.4-2 3.4-.4 7-1.7 7-7.5A5.8 5.8 0 0 0 19.5 5c.2-.5.7-2.2-.2-4 0 0-1.3-.4-4.3 1.7a14.7 14.7 0 0 0-6 0C6 0.6 4.7 1 4.7 1c-.9 1.8-.4 3.5-.2 4a5.8 5.8 0 0 0-1.6 4.4c0 5.8 3.6 7.1 7 7.5-.4.4-.5.9-.4 1.7V22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" /><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9S9.5 5.5 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            )}
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</li>
+
+<style>
+  .officer { display: flex; align-items: center; gap: 14px; min-width: 0; padding: 14px 0; border-top: 1px solid var(--line); }
+  .portrait { display: grid; place-items: center; flex: 0 0 60px; width: 60px; height: 60px; overflow: hidden; border: 1px solid #526273; border-radius: 50%; background: #252e3a; color: #94a9bb; }
+  .portrait img, .portrait svg { display: block; width: 100%; height: 100%; }
+  .portrait img { object-fit: cover; }
+  .officer-details { display: grid; gap: 2px; min-width: 0; }
+  .officer-details strong { color: var(--ink); font-size: 1.05rem; font-weight: 800; overflow-wrap: anywhere; }
+  .officer-role { color: var(--muted); font-size: .875rem; }
+  .officer-links { display: flex; flex-wrap: wrap; gap: 2px; margin: 2px 0 -8px -10px; }
+  .officer-links a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 5px; color: var(--ice); }
+  .officer-links a:hover { color: var(--ink); background: var(--surface-raised); }
+  .officer-links svg { width: 20px; height: 20px; }
+  @media (max-width: 520px) {
+    .officer { gap: 12px; padding: 10px 0; }
+    .portrait { flex-basis: 48px; width: 48px; height: 48px; }
+  }
+</style>

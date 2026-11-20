@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/base.astro'
+import { formatNewsDate, getPublishedNews } from '../lib/news'
+
+const posts = await getPublishedNews()
+---
+<Layout title="News & Writeups">
+  <main id="main" class="page">
+    <header class="page-heading"><h1>News &amp; Writeups</h1><p class="lede">Club updates, competition stories, and technical writeups.</p></header>
+    {posts.length > 0 ? (
+      <section class="news-list" aria-label="News and writeups">
+        {posts.map((post) => (
+          <article class="news-item">
+            <p class="news-meta"><time datetime={post.data.date.toISOString()}>{formatNewsDate(post.data.date)}</time>{post.data.author && ` · ${post.data.author}`}</p>
+            <h2><a href={`/news/${post.id}/`}>{post.data.title}</a></h2>
+            <p>{post.data.description}</p>
+          </article>
+        ))}
+      </section>
+    ) : (
+      <section class="notice">
+        <h2>No posts yet</h2>
+        <p>Club news and writeups will appear here as they become available.</p>
+      </section>
+    )}
+  </main>
+</Layout>

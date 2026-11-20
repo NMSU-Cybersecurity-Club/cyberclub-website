@@ -1,0 +1,52 @@
+{
+  "current": {
+    "academicYear": "2026–2027",
+    "leaders": [
+      { "role": "President", "name": "Samiel Thai",
+        "links": [
+          { "label": "LinkedIn", "url": "https://www.linkedin.com/in/samielt/" },
+          { "label": "Portfolio", "url": "https://samielthai.com/" }
+        ]
+      },
+      { "role": "Vice President", "name": "Tiffany Monarco" },
+      { "role": "Secretary", "name": "Aldo Mata" },
+      { "role": "Treasurer", "name": "Diego Romero" },
+      { "role": "Resource Manager", "name": "Zachary Bomke" },
+      { "role": "Public Relations", "name": "Rudy Garcia" }
+    ]
+  },
+  "past": [
+    {
+      "academicYear": "2025–2026",
+      "leaders": [
+        { "role": "President", "name": "Samiel Thai" },
+        { "role": "Vice President", "name": "Giovani Fuentes" },
+        { "role": "Resource Manager", "name": "Preston Hager" },
+        { "role": "Treasurer", "name": "Javier Ramerez" }
+      ]
+    },
+    {
+      "academicYear": "2024–2025",
+      "leaders": [
+        { "role": "President", "name": "Joseph Tomalewski" },
+        { "role": "Vice President", "name": "Samiel Thai" },
+        { "role": "Secretary", "name": "Kaden Martinez" },
+        { "role": "Treasurer", "name": "Jack Nolen" },
+        { "role": "Resource Manager", "name": "Giovani Fuentes" },
+        { "role": "Public Relations", "name": "Haylee Viramontes" }
+      ]
+    },
+    {
+      "academicYear": "2023–2024",
+      "leaders": [
+        { "role": "President", "name": "Derek Greetan" },
+        { "role": "Vice President", "name": "Joseph Tomalewski" },
+        { "role": "Secretary", "name": "Samiel Thai" },
+        { "role": "Treasurer", "name": "Jack Nolen" },
+        { "role": "General Officer", "name": "Giovani Fuentes" },
+        { "role": "General Officer", "name": "Kaden Martinez" },
+        { "role": "General Officer", "name": "Edy Swedberg" }
+      ]
+    }
+  ]
+}

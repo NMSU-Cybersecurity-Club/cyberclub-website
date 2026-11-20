@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/base.astro'
+import MeetingListing from '../components/MeetingListing.astro'
+---
+
+<Layout title="Events">
+  <main id="main" class="page">
+    <header class="page-heading">
+      <h1>Events</h1>
+      <p class="lede">Meet up, learn something new, and put your skills to work.</p>
+    </header>
+    <section id="meetings" class="content-section">
+      <h2>Meetings</h2>
+      <p>Meeting schedules can change. Check the event listing or ask the club before attending.</p>
+    </section>
+    <MeetingListing />
+  </main>
+</Layout>
