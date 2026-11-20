@@ -12,6 +12,8 @@
   --rose: #ec879e;
   --volt: #27b7eb;
   --ice: #94cdf0;
+  --success: #4ade80;
+  --caution: #facc15;
   --night: #000000;
 }
 html { scroll-behavior: smooth; }
@@ -86,6 +88,7 @@ h3 { font-size: 1.2rem; font-weight: 800; }
 .article-content { max-width: 75ch; overflow-wrap: anywhere; }
 .article-content > * + * { margin-top: 1.25em; }
 .article-content h2, .article-content h3, .article-content h4 { margin-top: 1.8em; }
+.article-content h4 { font-size: 1rem; font-weight: 800; color: var(--ink); }
 .article-content a { color: var(--ice); text-decoration: underline; text-underline-offset: 3px; }
 .article-content ul, .article-content ol { padding-left: 1.5rem; }
 .article-content ul { list-style: disc; }

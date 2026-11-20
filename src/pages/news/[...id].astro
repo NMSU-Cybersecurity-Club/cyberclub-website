@@ -1,7 +1,7 @@
 ---
 import { render } from 'astro:content'
-import Layout from '../../layouts/base.astro'
-import { formatNewsDate, getPublishedNews } from '../../lib/news'
+import DocsLayout from '../../layouts/DocsLayout.astro'
+import { getPublishedNews } from '../../lib/news'
 
 export async function getStaticPaths() {
   const posts = await getPublishedNews()
@@ -12,16 +12,6 @@ const { post } = Astro.props
 const { Content } = await render(post)
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
-  <main id="main" class="page">
-    <article class="news-article">
-      <p class="news-back"><a href="/news">← All news &amp; writeups</a></p>
-      <header class="page-heading">
-        <h1>{post.data.title}</h1>
-        <p class="news-meta"><time datetime={post.data.date.toISOString()}>{formatNewsDate(post.data.date)}</time>{post.data.author && ` · ${post.data.author}`}</p>
-        <p class="lede">{post.data.description}</p>
-      </header>
-      <div class="article-content"><Content /></div>
-    </article>
-  </main>
-</Layout>
+<DocsLayout frontmatter={post.data}>
+  <Content />
+</DocsLayout>

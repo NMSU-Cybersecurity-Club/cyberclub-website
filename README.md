@@ -42,6 +42,8 @@ Your article goes here. Use Markdown for headings, links, lists, images, and fen
 
 `title`, `date`, and `description` are required; `author` is optional. Set `draft: true` to keep an entry out of both the news list and the built site. The included `example-draft.md` is a template and is not published. Remove `draft` or set it to `false` when ready. Dates are displayed in UTC, and entries are sorted newest first; a future date does not schedule publication. Place images in `public/` and reference them with paths such as `![Description](/images/photo.jpg)`.
 
+Articles use a documentation layout with styled code blocks and callouts. A callout is a blockquote whose first line names the type, for example `> [!warning] Title` followed by the body text. Common types are `note`, `tip`, `warning`, `danger`, `success`, and `question`.
+
 Preview with Docker, then commit the Markdown and any images to Git. The site must be rebuilt and deployed for changes to go live. No GitHub Actions deployment workflow is configured yet; the correct workflow depends on where the site will be hosted.
 
 ## Meeting and event listings
