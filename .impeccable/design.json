@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-21T00:02:06Z",
+  "title": "Design System: Cybersecurity Club at NMSU",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#000000",
+        "tonalRamp": []
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#f4f1f4",
+        "tonalRamp": []
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "#bec0cb",
+        "tonalRamp": []
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#373b47",
+        "tonalRamp": []
+      },
+      "crimson": {
+        "role": "primary",
+        "displayName": "Crimson",
+        "canonical": "#8c1844",
+        "tonalRamp": [
+          "oklch(15% 0.03 8)",
+          "oklch(25% 0.07 8)",
+          "oklch(35% 0.11 8)",
+          "oklch(45% 0.16 8)",
+          "oklch(55% 0.18 8)",
+          "oklch(70% 0.13 8)",
+          "oklch(85% 0.07 8)",
+          "oklch(95% 0.02 8)"
+        ]
+      },
+      "volt": {
+        "role": "primary",
+        "displayName": "Volt",
+        "canonical": "#27b7eb",
+        "tonalRamp": [
+          "oklch(15% 0.02 225)",
+          "oklch(25% 0.05 225)",
+          "oklch(35% 0.07 225)",
+          "oklch(45% 0.09 225)",
+          "oklch(55% 0.11 225)",
+          "oklch(70% 0.13 225)",
+          "oklch(85% 0.08 225)",
+          "oklch(95% 0.02 225)"
+        ]
+      },
+      "ice": {
+        "role": "primary",
+        "displayName": "Ice",
+        "canonical": "#94cdf0",
+        "tonalRamp": [
+          "oklch(15% 0.02 235)",
+          "oklch(25% 0.04 235)",
+          "oklch(35% 0.06 235)",
+          "oklch(45% 0.08 235)",
+          "oklch(55% 0.1 235)",
+          "oklch(70% 0.1 235)",
+          "oklch(85% 0.07 235)",
+          "oklch(95% 0.02 235)"
+        ]
+      },
+      "frost": {
+        "role": "neutral",
+        "displayName": "Frost",
+        "canonical": "#d9e8f7",
+        "tonalRamp": [
+          "oklch(15% 0.01 245)",
+          "oklch(25% 0.02 245)",
+          "oklch(35% 0.03 245)",
+          "oklch(45% 0.04 245)",
+          "oklch(55% 0.04 245)",
+          "oklch(70% 0.04 245)",
+          "oklch(85% 0.03 245)",
+          "oklch(95% 0.01 245)"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "oklch(15% 0.01 260)",
+          "oklch(25% 0.02 260)",
+          "oklch(35% 0.02 260)",
+          "oklch(45% 0.02 260)",
+          "oklch(55% 0.02 260)",
+          "oklch(70% 0.02 260)",
+          "oklch(85% 0.01 260)",
+          "oklch(95% 0.005 260)"
+        ]
+      },
+      "rose": {
+        "role": "neutral",
+        "displayName": "Rose",
+        "canonical": "#ec879e",
+        "tonalRamp": []
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "#171b24",
+        "tonalRamp": []
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Raised surface",
+        "canonical": "#202530",
+        "tonalRamp": []
+      },
+      "control-border": {
+        "role": "neutral",
+        "displayName": "Control border",
+        "canonical": "#626775",
+        "tonalRamp": []
+      },
+      "footer": {
+        "role": "neutral",
+        "displayName": "Footer",
+        "canonical": "#000000",
+        "tonalRamp": []
+      },
+      "success": {
+        "role": "semantic",
+        "displayName": "Success",
+        "canonical": "#4ade80",
+        "tonalRamp": []
+      },
+      "caution": {
+        "role": "semantic",
+        "displayName": "Caution",
+        "canonical": "#facc15",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page titles."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Main reading text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Small technical labels in Fira Code (0.75rem, 600, 0.06em tracking), used sparingly."
+      },
+      "introduction": {
+        "displayName": "Introduction",
+        "purpose": "Introductory text in Crimson Text."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "smooth-scroll",
+        "value": "scroll-behavior: smooth",
+        "purpose": "Document scrolling; disabled under prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "820px"
+      }
+    ],
+    "callouts": [
+      {
+        "name": "note",
+        "color": "var(--volt)",
+        "types": ["note"],
+        "purpose": "Neutral information (blue)."
+      },
+      {
+        "name": "tip",
+        "color": "var(--success)",
+        "types": ["tip", "hint", "important", "success", "check", "done"],
+        "purpose": "Tips and success (green)."
+      },
+      {
+        "name": "question",
+        "color": "var(--caution)",
+        "types": ["question", "help", "faq", "warning", "caution", "attention"],
+        "purpose": "Questions and warnings (yellow)."
+      },
+      {
+        "name": "danger",
+        "color": "var(--rose)",
+        "types": ["failure", "fail", "missing", "danger", "error", "bug"],
+        "purpose": "Failures, dangers and bugs (red)."
+      },
+      {
+        "name": "quote",
+        "color": "var(--muted)",
+        "types": ["quote", "cite"],
+        "purpose": "Quotations."
+      }
+    ],
+    "docsArticle": {
+      "layout": "src/layouts/DocsLayout.astro",
+      "tokens": "site variables only; no separate colour set",
+      "purpose": "Article layout for code blocks, callouts and file trees; reuses --surface, --line, --muted, --ink, --volt, --ice and the callout colours."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main action on dark surfaces.",
+      "html": "<a class=\"ds-button\" href=\"#\">Explore events</a>",
+      "css": ".ds-button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:11px 20px; border:1px solid #27b7eb; border-radius:5px; background:#27b7eb; color:#000000; font:800 17px/1.6 Figtree, sans-serif; text-decoration:none; } .ds-button:hover { background:#94cdf0; border-color:#94cdf0; } .ds-button:focus-visible { outline:3px solid #27b7eb; outline-offset:4px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bordered alternative action.",
+      "html": "<a class=\"ds-secondary\" href=\"#\">Contact the club</a>",
+      "css": ".ds-secondary { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:11px 20px; border:1px solid #626775; border-radius:5px; background:transparent; color:#f4f1f4; font:800 17px/1.6 Figtree, sans-serif; text-decoration:none; } .ds-secondary:hover { background:#202530; border-color:#94cdf0; } .ds-secondary:focus-visible { outline:3px solid #27b7eb; outline-offset:4px; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Desktop navigation with an active underline; mobile navigation uses a native disclosure.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#\" aria-current=\"page\">Events</a><a href=\"#\">Activities</a></nav>",
+      "css": ".ds-nav { display:flex; flex-wrap:wrap; gap:2px 4px; font-family:Figtree,sans-serif; } .ds-nav a { color:#bec0cb; padding:10px 11px; border-radius:5px; font-size:.88rem; font-weight:600; text-decoration:none; } .ds-nav a:hover,.ds-nav a[aria-current=page] { background:#202530; color:#f4f1f4; } .ds-nav a[aria-current=page] { box-shadow:inset 0 -2px #27b7eb; } .ds-nav a:focus-visible { outline:3px solid #27b7eb; outline-offset:4px; }"
+    },
+    {
+      "name": "Notice",
+      "kind": "custom",
+      "refersTo": "notice",
+      "description": "Raised dark information panel.",
+      "html": "<section class=\"ds-notice\"><h2>Get connected</h2><p>Find current information from the club.</p></section>",
+      "css": ".ds-notice { padding:clamp(24px,4vw,38px); background:#171b24; border:1px solid #373b47; border-radius:6px; color:#f4f1f4; font:400 17px/1.6 Figtree,sans-serif; } .ds-notice h2 { margin:0; font-size:1.45rem; line-height:1.12; font-weight:800; } .ds-notice p { margin:12px 0 0; color:#bec0cb; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Welcoming Workshop",
+    "overview": "The site is dark-only, direct, and welcoming. Real club activities and clear paths to participation carry the personality; the supplied roadrunner artwork anchors the identity without a backing panel.",
+    "keyCharacteristics": [
+      "Dark surfaces with legible light text and understated borders.",
+      "Figtree for interface and headings, Crimson Text for introductions, and Fira Code for limited technical labels.",
+      "Volt actions and focus rings with Ice links; club artwork keeps its original colors and proportions.",
+      "Real club activity and clearly labeled uncertainty take precedence over invented proof."
+    ],
+    "rules": [],
+    "dos": [
+      "Do preserve the supplied club artwork and its original proportions.",
+      "Do preserve visible keyboard focus and readable contrast on dark surfaces.",
+      "Do label historical or unverified information and link to its source.",
+      "Do keep the mobile menu and its links keyboard-accessible, and allow actions to wrap at small widths.",
+      "Do keep motion to a few deliberate moments, and honor reduced-motion preferences."
+    ],
+    "donts": [
+      "Don't add a light theme without a new design decision.",
+      "Don't invent sponsors, members, or meeting dates.",
+      "Don't treat the draft brand guide as finalized policy."
+    ]
+  }
+}

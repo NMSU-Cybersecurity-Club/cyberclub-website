@@ -7,16 +7,22 @@
 
 ## Build, Preview & Cleanup Commands
 
-Always use `BypassSandbox: true` for `docker compose` commands:
+Run these `docker compose` commands from the project root:
 
 - **Verify static build:**
   ```bash
   docker compose run --rm --build web npm run build
   ```
 - **Start dev server (daemon):**
-  Run `docker compose up --build` with `IsDaemon: true`. Astro serves the site at `http://localhost:4321/` and watches `src`, `public`, and `astro.config.mjs`.
+  Run `docker compose up --build` (add `-d` to run in the background). Astro serves the site at `http://localhost:4321/` and watches `src`, `public`, and `astro.config.mjs`.
 - **Stop / reset stale container:**
   If `docker compose up` fails with a missing `exec.fifo` error or you need to clean up, run:
   ```bash
   docker compose down
   ```
+
+## Setup for New Contributors
+
+- **GSAP skills:** Run `npx skills install -a opencode` to restore the skills listed in `skills-lock.json`. They install into `.agents/skills/`, which OpenCode reads.
+- **Impeccable skill:** Run `npx impeccable install --project`. It installs skills for the agent you use, so they don't need to be committed.
+- **Local-only files:** `.impeccable/config.local.json`, `.impeccable/hook.cache.json`, and `.impeccable/questions/` are per-machine state. Don't commit them.

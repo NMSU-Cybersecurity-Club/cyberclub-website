@@ -17,3 +17,14 @@ pnpm-debug.log*
 # Operating-system files
 .DS_Store
 Thumbs.db
+
+# Agent tooling: installed per developer (see AGENTS.md, Setup for New Contributors)
+.agents/
+.opencode/skills/
+.opencode/migration/
+
+# Local Impeccable state (per machine) and the full design detail copy
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/questions/
+.impeccable/design-full.md
